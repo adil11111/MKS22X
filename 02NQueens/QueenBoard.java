@@ -12,26 +12,37 @@ public class QueenBoard{
     
     
     private boolean addQueen(int r, int c){
-	int row=r;
-	int col=c;
-	if (board[r][c]==0){
-	    board[r][c]=-1;
-	    for (;row<board.length-1;row++){
-		board[row+1][col+1]+=1;
+	try{
+	    int row=r;
+	    int col=c;
+	    if (board[r][c]==0){
+		board[r][c]=-1;
+		row=r;
+		col=c+1;
+	        while (col <board[0].length){
+		    System.out.println("yay");
+		    board[r][col]+=1;
+		    col++;
+		}
+		row=r;
+		col=c;
+		while (row< board.length && col < board[0].length){
+		    board[row+1][col+1]+=1;
+		    row++;
+		    col++;
+		}
+		row=r;
+		col=c;
+		while (row> 0 && col > 0){
+		    board[row-1][col-1]+=1;
+		    row--;
+		    col--;
+		}
+		
 	    }
-	    row=r;
-	    col=c+1;
-	    for (;col<board[0].length;col++){
-		board[r][col]+=1;
-	    }
-	    row=r;
-	    col=c;
-	    for (;row>=0 && col>=0;row--){
-		board[row-1][col-1]+=1;
-		col--;
-	    }
-	return true;
+		return true;
 	}
+	catch(ArrayIndexOutOfBoundsException e){}
 	return false;
     }
     private boolean removeQueen(int r, int c){
@@ -81,7 +92,7 @@ public class QueenBoard{
         QueenBoard test = new QueenBoard(5);
 	//test.addQueen(0,0);
 	//System.out.println(test);
-	test.addQueen(4,0);
+	test.addQueen(2,2);
 	System.out.println(test);
     }
 }
