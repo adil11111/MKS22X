@@ -71,7 +71,12 @@ public class QueenBoard{
 	String gatherer="";
 	for(int r=0;r<board.length;r++){
 	    for(int c=0;c<board.length;c++){
-	        gatherer= gatherer + board[r][c] + " ";
+		if (board[r][c]==-1){
+	        gatherer= gatherer + " Q" + " ";
+		}
+		else{
+		    gatherer= gatherer + " _";
+		}
 	    }
 	    gatherer = gatherer + "\n";
 	}
@@ -131,11 +136,12 @@ public class QueenBoard{
     }
 
     public static void main(String[] args){
-        QueenBoard test = new QueenBoard(10);
+        QueenBoard test = new QueenBoard(5);
 	//	test.addQueen(0,0);
 	//System.out.println(test);
 	//System.out.println(test.solveH(0));
-	System.out.println(test.countSolutions());
+	System.out.println(test.solve());
+	System.out.println(test);
 	//test.removeQueen(2,1);
 	//System.out.println(test);
 	//System.out.println(test.solve(0));
