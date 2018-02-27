@@ -5,9 +5,24 @@ import java.util.Scanner;
 public class Maze{
 
     public char[][] puzzle;
+    private int cols;
 
     public Maze(String filename){
-	puzzle = new char[9][35];
+	int rows=0;
+
+	try{
+	    File text = new File(filename);
+	    Scanner in = new Scanner(text);
+	    String line=in.nextLine();
+	    int cols=line.length();
+	    while(in.hasNextLine()){
+	     	rows++;
+	    }
+	     in.close();
+	}
+	catch(FileNotFoundException e){
+	}
+	puzzle = new char[15][cols];
 	try{
 	    File text = new File(filename);
 	    Scanner in = new Scanner(text);
@@ -48,9 +63,9 @@ public class Maze{
     }
     
     public static void main(String[] args){
-        System.out.println(reader("Maze1.txt"));
-	Maze test= new Maze("Maze1.txt");
-	System.out.println(test);
+        //System.out.println(reader("data1.dat"));
+	Maze test= new Maze("data2.dat");
+	System.out.println(test.cols);
     }
 	
 }
