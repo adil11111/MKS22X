@@ -8,22 +8,25 @@ public class Maze{
     private int cols;
 
     public Maze(String filename){
-	int rows=0;
+	
 
 	try{
+	    int rows=0;
 	    File text = new File(filename);
 	    Scanner in = new Scanner(text);
-	    String line=in.nextLine();
-	    int cols=line.length();
+	    String first=in.nextLine();
+	    int cols=first.length();
 	    while(in.hasNextLine()){
-	     	rows++;
-	    }
+		 String line = in.nextLine();
+		 rows++;
+		}
 	     in.close();
+	     puzzle = new char[rows][cols];
+
 	}
 	catch(FileNotFoundException e){
 	}
-	puzzle = new char[15][cols];
-	try{
+		try{
 	    File text = new File(filename);
 	    Scanner in = new Scanner(text);
 	    for (int r=0;r<puzzle.length;r++){
@@ -64,8 +67,8 @@ public class Maze{
     
     public static void main(String[] args){
         //System.out.println(reader("data1.dat"));
-	Maze test= new Maze("data2.dat");
-	System.out.println(test.cols);
+	Maze test= new Maze("data1.dat");
+	System.out.println(test);
     }
 	
 }
