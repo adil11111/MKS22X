@@ -37,6 +37,23 @@ public class Maze{
 	}
 	catch(FileNotFoundException e){
 	}
+	int e=0;
+	int s=0;
+	for (int row = 0; row < puzzle.length; row++) {
+	    for (int col = 0; col < puzzle[row].length; col++) {
+		if (puzzle[row][col] == 'E') {
+		    e++;
+		}
+		if (puzzle[row][col] == 'S') {
+		    s++;
+		}
+	    }
+	}
+	
+	if (e != 1 || s != 1) {
+	    throw new IllegalStateException();
+	}
+
     }
     public void setAnimate(boolean b){
         animate = b;
@@ -84,7 +101,7 @@ public class Maze{
 	    }*/
         if(puzzle[row][col]=='E'){
 	    return steps;
-	    }
+	}
 	for(int i=0;i<moves.length;i++){
 	    int rowCheck = row + moves[i][0];
 	    int colCheck = col + moves[i][1];
