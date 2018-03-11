@@ -88,27 +88,51 @@ public class USACO{
 	    }
 	}
     }
+    public static int silver(String filename){
+	int rows;
+	int cols;
+	int time;
+	String gatherer="";
+	char[][] map;
+	int startRow;
+	int endRow;
+	int startCol;
+	int endCol;
+	try{
+	    File text = new File(filename);
+	    Scanner in = new Scanner(text);
+	    rows=in.nextInt();
+	    cols=in.nextInt();
+	    time=in.nextInt();
+	    in.nextLine();
+	    String line= "";
+	    while(in.hasNextLine()){
+		line=in.nextLine();
+		gatherer= gatherer + line;
+	    }
+	    map= new char[rows][cols];
+	    int index=0;
+	    for (int r=0;r<rows;r++){
+		for (int c=0;c<cols;c++){
+		    map[r][c]=gatherer.charAt(index);
+		    index++;
+		}
+	    }
+	    String[] nums=line.split(" ");
+	    endCol = Integer.parseInt(nums[0])-1;
+	    endRow = Integer.parseInt(nums[1])-1;
+	    startCol = Integer.parseInt(nums[2])-1;
+	    startRow = Integer.parseInt(nums[3])-1;
+	    //System.out.println(endRow);
+	    
+	}
+	catch(FileNotFoundException e){
+	}
+	int[][] currentWays;
+	int[][] previousWays;
+	return 0;
+    }
     public static void main(String[] args){
-	//System.out.println
-	System.out.println(bronze("makelake.in"));
-	    //stomper(1,4,4);
-	/*String gatherer="";
-	for (int r=0;r<map.length;r++){
-	    for (int c=0;c<map[0].length;c++){
-		gatherer+=map[r][c] + " ";
-	    }
-	    gatherer+="\n";
-	}
-	System.out.println(gatherer);
-	/*
-	gatherer="";
-	System.out.println(gatherer);
-	for (int r=0;r<test.commands.length;r++){
-	    for (int c=0;c<3;c++){
-		gatherer+=test.commands[r][c] + " ";
-	    }
-	    gatherer+="\n";
-	}
-	System.out.println(gatherer);*/
+	silver("ctravel.in");
     }	
 }
