@@ -88,16 +88,19 @@ public class USACO{
 	    }
 	}
     }
+    public static int rows;
+    public static int cols;
+    public static int time;
+    public static String gatherer="";
+    public static char[][] board;
+    public static int startRow;
+    public static int endRow;
+    public static int startCol;
+    public static int endCol;
     public static int silver(String filename){
-	int rows;
-	int cols;
-	int time;
-	String gatherer="";
-	char[][] map;
-	int startRow;
-	int endRow;
-	int startCol;
-	int endCol;
+	
+	
+	int[][] moves={{1,0},{-1,0},{0,1},{0,-1}};
 	try{
 	    File text = new File(filename);
 	    Scanner in = new Scanner(text);
@@ -110,29 +113,62 @@ public class USACO{
 		line=in.nextLine();
 		gatherer= gatherer + line;
 	    }
-	    map= new char[rows][cols];
+	    board= new char[rows][cols];
 	    int index=0;
 	    for (int r=0;r<rows;r++){
 		for (int c=0;c<cols;c++){
-		    map[r][c]=gatherer.charAt(index);
+		    board[r][c]=gatherer.charAt(index);
 		    index++;
 		}
 	    }
 	    String[] nums=line.split(" ");
-	    endCol = Integer.parseInt(nums[0])-1;
-	    endRow = Integer.parseInt(nums[1])-1;
-	    startCol = Integer.parseInt(nums[2])-1;
-	    startRow = Integer.parseInt(nums[3])-1;
+	    startRow = Integer.parseInt(nums[0])-1;
+	    startCol = Integer.parseInt(nums[1])-1;
+	    endRow = Integer.parseInt(nums[2])-1;
+	    endCol = Integer.parseInt(nums[3])-1;
 	    //System.out.println(endRow);
 	    
 	}
 	catch(FileNotFoundException e){
 	}
-	int[][] currentWays;
-	int[][] previousWays;
-	return 0;
+	int[][] currentWays = new int[rows][cols];
+	int[][] previousWays = new int[rows][cols];
+	for (int r=0;r<rows;r++){
+	    for (int c=0;c<cols;c++){
+		if (board[r][c]=='*'){
+		    currentWays[r][c]=-1;
+		}
+	    }
+	}
+	//System.out.println(startCol);
+	currentWays[startRow][startCol]=1;
+	while (time>0){
+	    for (int r=0; r<rows;r++){
+		for (int c=0;c<cols;c++){
+		    previousWays[r][c]=currentWays[r][c];
+		}
+	    }
+	    for (int r=0;r<rows;r++){
+		for (int c=0;c<cols;c++){
+		    if (currentWays[r][c]!=-1){
+			currentWays[r][c]=0;
+			try{
+			for(int i=0;i<moves.length;i++){
+			    int rowCheck = r + moves[i][0];
+			    int colCheck = c + moves[i][1];
+			    if (rowCheck>=0 && colCheck>=0 && previousWays[rowCheck][colCheck]!=-1){
+				currentWays[r][c]= previousWays[rowCheck][colCheck];
+			    }
+			}
+			}catch(ArrayIndexOutOfBoundsException e){}
+		    }
+		}
+	    }
+	    time--;
+	}
+	return currentWays[endRow][endCol];
     }
     public static void main(String[] args){
-	silver("ctravel.in");
+	System.out.println(silver("ctravel.in"));
     }	
 }
