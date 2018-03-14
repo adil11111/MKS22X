@@ -150,17 +150,15 @@ public class USACO{
 	    }
 	    for (int r=0;r<rows;r++){
 		for (int c=0;c<cols;c++){
-		    if (currentWays[r][c]!=-1){
-			currentWays[r][c]=0;
-			try{
+		    if (board[r][c]!='*'){
+			currentWays[r][c]=0;	
 			for(int i=0;i<moves.length;i++){
 			    int rowCheck = r + moves[i][0];
 			    int colCheck = c + moves[i][1];
-			    if (rowCheck>=0 && colCheck>=0 && previousWays[rowCheck][colCheck]!=-1){
-				currentWays[r][c]= previousWays[rowCheck][colCheck];
+			    if (rowCheck>=0 && colCheck>=0 && rowCheck<rows && colCheck < cols && previousWays[rowCheck][colCheck]!=-1){
+				currentWays[r][c]+= previousWays[rowCheck][colCheck];
 			    }
 			}
-			}catch(ArrayIndexOutOfBoundsException e){}
 		    }
 		}
 	    }
