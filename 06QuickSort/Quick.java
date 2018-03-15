@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 public class Quick{
 
-    public static int partition ( int [] data, int start, int end){
+    /*public static int partition ( int [] data, int start, int end){
 	Random gen = new Random();
 	int num= start + gen.nextInt(end - start + 1);
 	swap(data,start,num);
@@ -18,8 +18,31 @@ public class Quick{
 	    }
 	}
 	swap(data,start,large);
-	return large;
-	
+	return large;	
+	}*/
+    public static int partition ( int [] data, int start, int end){
+	Random gen = new Random();
+	int num= start + gen.nextInt(end - start + 1);
+	swap(data,start,num);
+	int small=start+1;
+	int large=end;
+	int index=small;
+	while (small <= large){
+	    if(data[index]==data[start]){
+		index++;
+	    }
+	    else if(data[index]>data[start]){
+		swap(data,index,large);
+		large--;
+	    }
+	    else{
+		swap(data,index,small);
+		small++;
+		index++;
+	    }
+	}
+	swap(data,start,large);
+	return large;	
     }
 
     public static void swap(int[] data, int first, int second){
