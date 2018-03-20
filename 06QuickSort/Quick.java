@@ -27,23 +27,23 @@ public class Quick{
 	int small=start+1;
 	int large=end;
 	int index=small;
-	while (small <= large){
+	while (index <= large){
 	    if(data[index]==data[start]){
 		index++;
 	    }
-	    else if(data[index]>data[start]){
+	    if(data[small]>data[start]){
 		swap(data,index,large);
 		large--;
 	    }
 	    else{
-		swap(data,index,small);
+		//swap(data,index,small);
 		small++;
 		index++;
 	    }
 	}
 	swap(data,start,large);
 	return large;	
-    }
+	}
 
     public static void swap(int[] data, int first, int second){
 	int temp = data[second];
@@ -75,10 +75,10 @@ public class Quick{
 	return ary[i];
     }
     public static void main(String[] args){
-	int[] data= { 2, 10, 15, 23, 0,  5};
+	int[] data= {0,0,0,0,0,1,1,1,1,11,1,1,2,2,2,2,2,2,2,12,5,4,7,8};
         //System.out.println(partition(data,0,7));
 	System.out.println(quickSelect(data,0));
-		System.out.println(quickSelect(data,1));
+	System.out.println(quickSelect(data,1));
 	System.out.println(quickSelect(data,2));
 	System.out.println(quickSelect(data,3));
 	System.out.println(quickSelect(data,4));
