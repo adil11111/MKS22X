@@ -21,7 +21,7 @@ public class Merge{
 	if (lo>=hi){
 	    return;
 	}
-	for(int i=0;i<data.length;i++){
+	for(int i=lo;i<hi;i++){
 	    temp[i]=data[i];
 	}
 	int mid=(lo+hi)/2;
