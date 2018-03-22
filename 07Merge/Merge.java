@@ -31,12 +31,5 @@ public class Merge{
     }
 
     public static void main(String[]args){
-	int[] ary= {0,1,5,6};
-	int[] data={2,3,4};
-	int[] merged=new int[8];
-	merge(ary,data,merged);
-	for(int i=0;i<merged.length;i++){
-	    System.out.println(merged[i]);
 	}	    
-    }
 }
