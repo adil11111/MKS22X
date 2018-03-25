@@ -21,41 +21,21 @@ public class Merge{
 	    }
 	}
      }
-	/*
-        public static void merge(int[] data, int[] temp, int lo, int mid, int hi){
-	int medic = mid+1;
-	int count = lo;
-	
-
-	while(lo <= mid && medic <= hi){
-
-	    if (temp[lo] <= temp[medic]){
-		data[count] = temp[lo];
-		lo++;
-	    }
-	    else{
-		data[count] = temp[medic];
-		medic++;
-	    }
-	    count++;
-	    //toString(temp);
+    public static void selectionSort(int[] data){
+	if (data.length==0 || data.length==1){
+	    return;
 	}
-
-	while (lo <= mid){
-	    data[count] = temp[lo];
-	    lo++;
-	    count++;
+	for (int i=0;i<data.length;i++){
+	    int min=data[i];
+	    for (int current=i;current<data.length;current++){
+		if (data[current]<min){
+		    min=data[current];
+		    data[current]=data[i];
+		    data[i]=min;
+		}
+	    }
 	}
-
-	while (medic <= hi){
-	    //System.out.println(count);
-	    data[count] = temp[medic];
-	    medic++;
-	    count++;
-	}	
-
-	}*/
-    
+    }
     public static void mergesort(int[] data){
 	int[] temp=new int[data.length];
 	msort(data,temp,0,data.length-1);
@@ -75,10 +55,6 @@ public class Merge{
     }
 
     public static void main(String[]args){
-	int[] data = {7,0,5,3,8,2,4,11};
-	mergesort(data);
-	for (int i=0;i<data.length;i++){
-	    System.out.println(data[i]);
 	}
     }	    
 }
