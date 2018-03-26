@@ -78,7 +78,29 @@ public class Quick{
     public static void quickSort(int[] ary){
 	quickH(ary,0,ary.length-1);
     }
+    public static void insertionSort(int[] data,int lo,int hi){
+	int index=lo+1;
+	while(index<=hi){
+	    int counter=index;
+	    while(counter>lo && data[index]<data[counter-1]){
+		counter--;
+	    }
+	    move(data,index,counter);
+	    index++;
+	}
+    }
+    public static void	move(int[] data, int oldindex,int newindex){
+	int temp=data[oldindex];
+	for (int i=oldindex;i>newindex;i--){
+	    data[i]=data[i-1];
+	}
+	data[newindex]=temp;		 
+    }
     public static void quickH(int[] ary,int small,int large){
+	if (large-small <=20){
+	    insertionSort(ary,small,large);
+	    return;
+	}
 	if(small<large){   
 	    int half = partition(ary, small, large);
 	    quickH(ary, small, half - 1);
@@ -86,16 +108,6 @@ public class Quick{
 	}
     }
     public static void main(String[] args){
-	int[] data= {0,0,0,1,1,1,2,2,2,0,0,0,1,1,1,2,2,2,0,1,1,2,2,2,3,4,2,3,4,5,2,1,3,4,2,1,3,2,3,4,1,2,3,2,3,2,1,1,3,2,4,5,6,2,1,3};
-	Random randgen= new Random();
-                //System.out.println(partition(data,0,7));
-	//System.out.println(quickSelect(data,0));
-	quickSort(data);
-	for(int i=0;i<data.length;i++){
-	    System.out.println(data[i]);
-	}
-	/*for (int i=0;i<data.length;i++){
-	    System.out.println(data[i]);
-	    }*/
+        
     }
 }
