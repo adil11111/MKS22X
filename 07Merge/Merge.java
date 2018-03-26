@@ -21,20 +21,24 @@ public class Merge{
 	    }
 	}
      }
-    public static void selectionSort(int[] data){
-	if (data.length==0 || data.length==1){
-	    return;
-	}
-	for (int i=0;i<data.length;i++){
-	    int min=data[i];
-	    for (int current=i;current<data.length;current++){
-		if (data[current]<min){
-		    min=data[current];
-		    data[current]=data[i];
-		    data[i]=min;
-		}
+    
+    public static void insertionSort(int[] data,int lo,int hi){
+	int index=lo+1;
+	while(index<=hi){
+	    int counter=index;
+	    while(counter>lo && data[index]<data[counter-1]){
+		counter--;
 	    }
+	    move(data,index,counter);
+	    index++;
 	}
+    }
+    public static void	move(int[] data, int oldindex,int newindex){
+	int temp=data[oldindex];
+	for (int i=oldindex;i>newindex;i--){
+	    data[i]=data[i-1];
+	}
+	data[newindex]=temp;		 
     }
     public static void mergesort(int[] data){
 	int[] temp=new int[data.length];
@@ -42,7 +46,8 @@ public class Merge{
     }
     
     private static void msort(int[]data, int[]temp, int lo, int hi){
-	if (lo>=hi){
+        if (hi-lo <= 20){
+	    insertionSort(data, lo, hi);
 	    return;
 	}
 	for(int i=lo;i<hi+1;i++){
@@ -55,6 +60,7 @@ public class Merge{
     }
 
     public static void main(String[]args){
-	}
+
+	    
     }	    
 }
