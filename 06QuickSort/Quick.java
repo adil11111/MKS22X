@@ -59,7 +59,7 @@ public class Quick{
 	return gatherer;
     }
     
-    public static int quickSelect(int[]ary, int k){
+    public static int quickselect(int[]ary, int k){
 	int small=0;
 	int large= ary.length-1;
 	int i= partition(ary,small,large);
