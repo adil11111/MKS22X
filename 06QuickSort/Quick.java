@@ -75,7 +75,7 @@ public class Quick{
 	}
 	return ary[i];
     }
-    public static void quickSort(int[] ary){
+    public static void quicksort(int[] ary){
 	quickH(ary,0,ary.length-1);
     }
     public static void insertionSort(int[] data,int lo,int hi){
