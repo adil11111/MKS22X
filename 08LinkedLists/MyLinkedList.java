@@ -46,8 +46,6 @@ public class MyLinkedList{
 	}
 	return initial;
     }
-
-
     public MyLinkedList(){
 	start=null;
 	end=null;
@@ -88,7 +86,20 @@ public class MyLinkedList{
 	return -1;
     }
 
-    //public boolean add(Integer newData);
+    public boolean add(Integer newData){
+	if (size==0){
+	start = new Node(newData);
+	size++;
+	}
+        int i=0;
+	while(i<size()){
+	    Node startingNode=getNext;
+	    Node nextNode = getNext();
+	    i++;
+	}
+	setNext(new Node(newData));
+	return true;
+    }
     //public void add(int index, Integer value);//exceptions!
 
     //The remove methods can cause a problem, this is why we shouldn't 
@@ -97,9 +108,17 @@ public class MyLinkedList{
     //public Integer remove(int index)
     public String toString(){
 	String result= "[";
-	for (int i=0;i<size();i++){
-	    result+=getNode(i) + ",";
+	int i=0;
+	for (;i<size()-1;i++){
+	    result+=getNode(i).getValue() + ",";
 	}
+	result+=getNode(i).getValue();
 	return result + "]";
+    }
+    public static void main(String[]args){
+	MyLinkedList a = new MyLinkedList();
+	a.add(new Integer(5));
+	a.add(new Integer(6));
+	System.out.println(a);
     }
 }
