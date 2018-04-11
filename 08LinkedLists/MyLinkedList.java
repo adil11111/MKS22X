@@ -19,7 +19,7 @@ public class MyLinkedList{
 	public Integer getValue(){
 	    return data;
 	}
-	public void setnext(Node newNode){
+	public void setNext(Node newNode){
 	    next=newNode;
 	}
 	public void setPrev(Node newNode){
@@ -87,25 +87,74 @@ public class MyLinkedList{
     }
 
     public boolean add(Integer newData){
-	if (size==0){
-	start = new Node(newData);
+	Node adding = new Node(newData);
+	if (size() == 0){
+	start = adding;
+	end=adding;
+	}
+        else if(size()==1){
+	    end=adding;
+	    start.setNext(adding);
+	    adding.setPrev(start);   
+	}
+	else{
+	    adding.setPrev(end);
+	    end.setNext(adding);
+	    end=adding;
+	}
 	size++;
-	}
-        int i=0;
-	while(i<size()){
-	    Node startingNode=getNext;
-	    Node nextNode = getNext();
-	    i++;
-	}
-	setNext(new Node(newData));
 	return true;
     }
-    //public void add(int index, Integer value);//exceptions!
+    public void add(int index, Integer value){
+	if (index < 0 || index > size()){
+	    throw new IndexOutOfBoundsException();
+	}
+	Node adding =new Node(value);
+	if (index==size()){
+	    add(value);
+	    return;
+	}
+	else if(index==0){
+	    adding.setNext(start);
+	    start.setPrev(adding);		    
+	    start=adding;
+	}
+	else{
+	    adding.setNext(getNode(index));
+	    adding.setPrev(getNode(index-1));
+	    getNode(index-1).setNext(adding);
+	    getNode(index).setPrev(adding);
+	    	}
+	size++;
+    }
 
-    //The remove methods can cause a problem, this is why we shouldn't 
-    //use an int as the data, we need objects to distinguish between index and data
-    //public boolean remove(Integer value);
-    //public Integer remove(int index)
+
+    public boolean remove(Integer value){
+	if (indexOf(value)==-1){
+	    return false;
+	}
+	remove(indexOf(value));
+        return true;
+    }
+    public Integer remove(int index){
+	if (index < 0 || index >= size()){
+	    throw new IndexOutOfBoundsException();
+	}
+	Integer result = getNode(index).getValue();
+	if (index==0){
+	    start=getNode(1);
+	}
+	if (index==size()-1){
+	    end=getNode(index-1);
+	}
+	else{
+	    getNode(index+1).setPrev(getNode(index-1));	    
+	    getNode(index-1).setNext(getNode(index+1));
+
+	}
+	size--;
+	return result;
+    }
     public String toString(){
 	String result= "[";
 	int i=0;
@@ -116,9 +165,6 @@ public class MyLinkedList{
 	return result + "]";
     }
     public static void main(String[]args){
-	MyLinkedList a = new MyLinkedList();
-	a.add(new Integer(5));
-	a.add(new Integer(6));
-	System.out.println(a);
     }
+       
 }
