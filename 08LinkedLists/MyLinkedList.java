@@ -5,7 +5,7 @@ public class MyLinkedList{
 	private Node next;
 	private Node previous;
     
-	public Node(int value){
+	public Node(Integer value){
 	    data=value;
 	    next=null;
 	    previous=null;
@@ -70,7 +70,7 @@ public class MyLinkedList{
 	    throw new IndexOutOfBoundsException();
 	}
 	Node replaced = getNode(index);
-	int oldValue=replaced.getValue();
+	Integer oldValue=replaced.getValue();
 	replaced.setValue(value);
 	return oldValue;
     }
