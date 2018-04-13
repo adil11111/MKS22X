@@ -1,4 +1,5 @@
-public class MyLinkedListImproved<T>{
+import java.util.Iterator;
+public class MyLinkedListImproved<T> implements Iterable<T>{
     private class Node{
 
 	private T data;
@@ -25,7 +26,6 @@ public class MyLinkedListImproved<T>{
 	public void setPrev(Node newNode){
 	    previous=newNode;
 	}
-    
 	public void setValue(T newValue){
 	    data= newValue;
 	}
@@ -45,6 +45,9 @@ public class MyLinkedListImproved<T>{
 	    initial=initial.getNext();
 	}
 	return initial;
+    }
+    public Iterator<T> iterator(){
+	return new MLLIterator(this);
     }
     public MyLinkedListImproved(){
 	start=null;
