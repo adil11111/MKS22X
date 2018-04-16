@@ -1,5 +1,5 @@
 import java.util.Iterator;
-public class MyLinkedListImproved<T> implements Iterable<T>{
+public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T>{
     private class Node{
 
 	private T data;
@@ -45,9 +45,6 @@ public class MyLinkedListImproved<T> implements Iterable<T>{
 	    initial=initial.getNext();
 	}
 	return initial;
-    }
-    public Iterator<T> iterator(){
-	return new MLLIterator(this);
     }
     public MyLinkedListImproved(){
 	start=null;
@@ -167,12 +164,66 @@ public class MyLinkedListImproved<T> implements Iterable<T>{
 	result+=getNode(i).getValue();
 	return result + "]";
     }
+    public Iterator<T> iterator(){
+	return new MLLIterator(start);
+    }
+    public class MLLIterator implements Iterator<T>{
+	Node current;
+        
+	public MLLIterator(Node start){
+	    current=start;
+	}
+	public boolean hasNext(){
+	    return current!=null;
+	}
+	public T next(){
+	    T answer;
+	    if(!hasNext()){
+		System.exit(0);
+	    }
+	    answer=current.getValue();
+	    current=current.getNext();
+	    return answer;
+	}
+    }
+    public int max(){
+	if (size()==0){
+	    return -1;
+	}
+	int maxIndex=0;
+	int currentIndex=0;
+	Node currentNode =start;
+	T maxValue=start.getValue();
+        while(currentNode!=null){
+	    if(maxValue.compareTo(currentNode.getValue())<0){
+	        maxValue=currentNode.getValue();
+		maxIndex=currentIndex;
+	    }
+	    currentIndex++;
+	    currentNode=currentNode.getNext();
+	}
+	return maxIndex;
+    }
+    public int min(){
+	if (size()==0){
+	    return -1;
+	}
+	int minIndex=0;
+	int currentIndex=0;
+	Node currentNode =start;
+	T minValue=start.getValue();
+        while(currentNode!=null){
+	    if(minValue.compareTo(currentNode.getValue())>0){
+	        minValue=currentNode.getValue();
+		minIndex=currentIndex;
+	    }
+	    currentIndex++;
+	    currentNode=currentNode.getNext();
+	}
+	return minIndex;
+    }
+
     public static void main(String[]args){
-	MyLinkedListImproved<String> n = new MyLinkedListImproved<>();
-        n.add("fish");
-	System.out.println(n);
-	MyLinkedListImproved<Integer> m = new MyLinkedListImproved<>();
-        m.add(new Integer(0));
-	System.out.println(m);
+        
     }
 }
