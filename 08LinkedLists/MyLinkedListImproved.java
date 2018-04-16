@@ -222,7 +222,22 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
 	}
 	return minIndex;
     }
-
+    public void extend(MyLinkedListImproved<T> other){
+	if(other.size()==0){
+	    return;
+	}
+	if(size()==0){
+	    start=other.start;
+	}
+	else{
+	    end.setNext(other.start);
+	    other.start.setPrev(end);
+	}
+	end=other.end;
+	size+=other.size();
+	other.clear();
+	return;
+    }			
     public static void main(String[]args){
         
     }
