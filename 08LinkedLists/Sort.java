@@ -1,3 +1,4 @@
+import java.util.*;
 public class Sort{
     public static void radixsort(MyLinkedListImproved<Integer> data){
 	int  maxIndex=data.max();
@@ -5,12 +6,18 @@ public class Sort{
 	String maxString= "" + maxNum;
 	int maxLength = maxString.length();
 	int index=0;
-	@SuppressWarnings("unchecked")MyLinkedListImproved<Integer>[]  bucket = new MyLinkedListImproved[10]; 
+	@SuppressWarnings("unchecked")MyLinkedListImproved<Integer>[]  bucket = new MyLinkedListImproved[10];
+	for(int i = 0; i < 10; i++){
+            bucket[i] = new MyLinkedListImproved<>();
+        }
 	while(index < maxLength){
 	    for(int i=0;i<data.size();i++){
 		int num = data.get(i);
-		num=num/(index*10);
-		int digit = num % 10;
+		int newNum = num;
+		if(index!=0){
+		    newNum=num/((int)Math.pow(10,index));
+		}
+		int digit = newNum % 10;
 		bucket[digit].add(num);
 	    }
 	    data.clear();
@@ -20,4 +27,8 @@ public class Sort{
 	    index++;
 	}
     }
+
+    public static void main(String[] args) {
+    }
+    
 }
