@@ -4,20 +4,26 @@ public class ExpressionTree{
   
   /*return the expression as an infix notation string with parenthesis*/
   /* The sample tree would be: "( 3 + (2 * 10))"     */
-  public String toString(){
-    /*you are to write this method*/
-    return "";
-  }
-  
+      public String toString(){
+	String answer="";
+	if(isValue()){
+	    answer= answer +  getValue();
+	}
+	else{
+	    answer= answer + "(" + getLeft().toString() +" " + getOp()+" " + getRight().toString()+ ")";
+	}
+	return answer;
+	}
+
   /*return the expression as a postfix notation string without parenthesis*/
   /* The sample tree would be: "3 2 10 * +"     */
   public String toStringPostfix(){
       String answer="";
       if(isValue()){
-	  answer= answer + "" + getValue();
+	  answer= answer +  getValue();
       }
       else{
-	  answer= answer + "" + getLeft().evaluate() + getRight().evaluate();
+	  answer= answer + getLeft().toStringPostfix() +" " + getRight().toStringPostfix()+ " "+getOp();
       }
       return answer;
   }
@@ -25,10 +31,17 @@ public class ExpressionTree{
   /*return the expression as a prefix notation string without parenthesis*/
   /* The sample tree would be: "+ 3 * 2 10"     */
   
-  public String toStringPrefix(){
-    /*you are to write this method*/
-    return "";
-  }
+    public String toStringPrefix(){
+	String answer="";
+	if(isValue()){
+	    answer= answer +  getValue();
+	}
+	else{
+	    answer= answer + getOp() + " " + getLeft().toStringPrefix() +" " + getRight().toStringPrefix();
+	}
+	return answer;
+    }
+
   
   
   
