@@ -28,7 +28,7 @@ public class MyHeap{
 	}
 	else{
 	    data[size]=s;
-	    pushUp();
+	    pushUp(size);
 	}
 	size++;
     }
@@ -39,7 +39,7 @@ public class MyHeap{
 	data[size-1] = null;
 	size--;
 	//System.out.println(this);
-	pushDown();
+	pushDown(0);
 	return result;
     }
     
@@ -49,8 +49,7 @@ public class MyHeap{
     public int size(){
 	return size;
     }
-    private void pushDown(){
-	int index=0;
+    private void pushDown(int index){
 	int greaterIndex;
 	if(type){
 	    while((2*index+1 < size && data[index].compareTo(data[2*index+1]) < 0) ||(2*index+2 < size &&  data[index].compareTo(data[2*index+2]) < 0)){
@@ -91,8 +90,7 @@ public class MyHeap{
 	data[first]=data[second];
 	data[second]=temp;
     }
-    private void pushUp(){
-	int index=size;
+    private void pushUp(int index){
 	if(type){
 	    //System.out.println((((index-1)/2)>=0));
 	    //System.out.println(data[index].compareTo(data[(index-1)/2])>=0);
@@ -125,7 +123,31 @@ public class MyHeap{
 	result+=data[i];
 	return result + "]";
     }
+    public class Sorts{
+	public static void heapify(String[] data, boolean bool){
+	    for(int i=0;i<data.length;i++){
+		pushDown(i);
+	    }
+		
+	}
+	/*public void heapSort(String[] data){
+	    
+	  }*/
+    }
     public static void main(String[] args){
+	MyHeap temp = new MyHeap();
+	temp.add("b");
+	temp.add("p");
+	temp.add("c");
+	temp.add("d");
+	temp.add("e");
+	temp.add("f");
+	//temp.add("z");
+	temp.add("a");
+	System.out.println(temp.size());		
+	temp.remove();
+	System.out.println(temp);
+	System.out.println(temp.size());
     }    
 }
 
