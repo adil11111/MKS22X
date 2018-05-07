@@ -7,6 +7,12 @@ public class MyHeap{
 	data = new String[10];
 	type=true;
     }
+    public static void heapify(String[] data){
+	MyHeap temp = new MyHeap();
+	for(int i=0;i<data.length;i++){
+	    temp.add(data[i]);
+	}
+    }
     //- construct empty max heap
     public MyHeap(boolean bool){
 	data = new String[10];
