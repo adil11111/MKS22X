@@ -1,21 +1,34 @@
-public class MyHeap{
-    String[] data;
+public class MyHeap<T extends Comparable<T>>{
+    T[] data;
     int size;
     boolean type;
     
+    @SuppressWarnings("unchecked")
     public MyHeap(){
-	data = new String[10];
+	data = (T[]) new Comparable[10];
 	type=true;
     }
-    public static void heapify(String[] data){
-	MyHeap temp = new MyHeap();
-	for(int i=0;i<data.length;i++){
-	    temp.add(data[i]);
+    
+    /*public void heapify(T[] array){
+	size = array.length;
+	//System.out.println(size);
+	data = array;
+	for(int index = size - 1; index >= 0; index--){
+	    int check = index*2+1;
+	    if(check < size){
+		pushDown(index);
+	    }
+	}
+	}*/
+    public void heapify(T[] array){
+	for (int i=0;i<array.length;i++){
+	    add(array[i]);
 	}
     }
-    //- construct empty max heap
+    
+    @SuppressWarnings("unchecked")
     public MyHeap(boolean bool){
-	data = new String[10];
+	data = (T[]) new Comparable[10];
 	if(bool){
 	    type=true;
 	}
@@ -25,7 +38,7 @@ public class MyHeap{
     }
     //- true: construct empty max heap, false: construct empty min heap.
  
-    public  void add(String s){
+    public  void add(T s){
 	if (size==data.length){
 	    resize();
 	}
@@ -38,8 +51,8 @@ public class MyHeap{
 	}
 	size++;
     }
-    public String remove(){
-	String result = data[0];
+    public T remove(){
+	T result = data[0];
 	//System.out.println(size-1);
 	data[0]=data[size-1];
 	data[size-1] = null;
@@ -49,15 +62,19 @@ public class MyHeap{
 	return result;
     }
     
-    public String peek(){
+    public T peek(){
 	return data[0];
     }
     public int size(){
 	return size;
     }
-    private void pushDown(int index){
+    
+    public void pushDown(int index){
 	int greaterIndex;
 	if(type){
+	    //System.out.println(index);
+	    //System.out.println(2*index+1 < size);
+	    //System.out.println(size);
 	    while((2*index+1 < size && data[index].compareTo(data[2*index+1]) < 0) ||(2*index+2 < size &&  data[index].compareTo(data[2*index+2]) < 0)){
 		if(2*index+2>=size){
 		    greaterIndex=2*index+1;
@@ -91,8 +108,9 @@ public class MyHeap{
 	    }
 	}
     }
+
     public void swap(int first,int second){
-	String temp= data[first];
+	T temp= data[first];
 	data[first]=data[second];
 	data[second]=temp;
     }
@@ -113,13 +131,16 @@ public class MyHeap{
 	    }
 	}
     }
+    
+    @SuppressWarnings("unchecked")
     private void resize(){
-	String[] newData = new String [data.length*2+1];
+	T[] newData = (T[])new Comparable [data.length*2+1];
 	for(int i=0;i<data.length;i++){
 	    newData[i]=data[i];
 	}
 	data=newData;
     }
+    
     public String toString(){
 	String result= "[";
 	int i=0;
@@ -129,31 +150,36 @@ public class MyHeap{
 	result+=data[i];
 	return result + "]";
     }
-    public class Sorts{
-	public static void heapify(String[] data, boolean bool){
-	    for(int i=0;i<data.length;i++){
-		pushDown(i);
-	    }
-		
-	}
-	/*public void heapSort(String[] data){
-	    
-	  }*/
-    }
+    
     public static void main(String[] args){
-	MyHeap temp = new MyHeap();
-	temp.add("b");
-	temp.add("p");
-	temp.add("c");
-	temp.add("d");
-	temp.add("e");
-	temp.add("f");
-	//temp.add("z");
-	temp.add("a");
-	System.out.println(temp.size());		
-	temp.remove();
+	MyHeap<Integer> temp = new MyHeap<Integer>();
+	temp.add(6);
+	temp.add(7);
+	temp.add(9);
+	temp.add(2);
+	temp.add(12);
+	temp.add(99);
+	temp.add(0);
+	temp.add(900);
+	temp.add(2);
+	temp.add(21);
 	System.out.println(temp);
-	System.out.println(temp.size());
+	Integer[] a = new Integer[10];
+	a[0]=new Integer(6);
+	a[1]=new Integer(7);
+	a[2]=new Integer(9);
+	a[3]=new Integer(2);
+	a[4]=new Integer(12);
+	a[5]=new Integer(99);
+	a[6]=new Integer(0);
+	a[7]=new Integer(900);
+	a[8]=new Integer(2);
+	a[9]=new Integer(21);
+
+	MyHeap<Integer> temp2 = new MyHeap<Integer>();
+	temp2.heapify(a);
+	System.out.println(temp2);
+		
     }    
 }
 
