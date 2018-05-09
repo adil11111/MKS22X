@@ -9,7 +9,7 @@ public class MyHeap<T extends Comparable<T>>{
 	type=true;
     }
     
-    /*public void heapify(T[] array){
+    public void heapify(T[] array){
 	size = array.length;
 	//System.out.println(size);
 	data = array;
@@ -18,11 +18,6 @@ public class MyHeap<T extends Comparable<T>>{
 	    if(check < size){
 		pushDown(index);
 	    }
-	}
-	}*/
-    public void heapify(T[] array){
-	for (int i=0;i<array.length;i++){
-	    add(array[i]);
 	}
     }
     
