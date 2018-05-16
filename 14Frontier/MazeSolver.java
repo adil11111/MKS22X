@@ -19,8 +19,14 @@ public class MazeSolver{
     //2:PRQ
     //3:Astar
     public boolean solve(int mode){
-	//initialize your frontier
-	//while there is stuff in the frontier:
+	if(mode==0){
+	    Frontier frontier = new FrontierQueue();
+	}
+	else if (mode==1){
+	    Frontier frontier = new FrontierStack();	
+	}
+	while (frontier.hasNext()){
+	}
 	//  get the next location
 	//  process the location to find the locations (use the maze to do this)
 	//  check if any locations are the end, if you found the end just return true!
