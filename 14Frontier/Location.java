@@ -9,6 +9,12 @@ public class Location implements Comparable<Location>{
 	y = _y;
 	previous = prev;
     }
+    public Location(int _x, int _y, Location prev,int dist){
+	x = _x;
+	y = _y;
+	previous = prev;
+	distance=dist;
+    }
     public Location(int _x, int _y, Location prev,int dist,int dSF){
 	x=_x;
 	y=_y;
@@ -34,7 +40,9 @@ public class Location implements Comparable<Location>{
 	return y;
     }
     public int compareTo(Location loc){
-	return getDistance() - loc.getDistance();
+	int ourDist= getDistance() + getDistanceSoFar();
+	int otherDist = loc.getDistance() + loc.getDistanceSoFar();
+	return ourDist-otherDist;
     }
 
 }
