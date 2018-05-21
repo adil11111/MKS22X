@@ -32,6 +32,7 @@ public class Maze{
 		    else{
 			result[i]=new Location(nextX,nextY,L, distEnd);
 		    }
+		    System.out.println(result[i]);
 		}
 	    }
 	    
@@ -120,7 +121,7 @@ public class Maze{
     }
 
     public String toStringColor(){
-	return toStringColor(50);
+	return toStringColor(10);
     }
 
     public String toStringColor(int delay){

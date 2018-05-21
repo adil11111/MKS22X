@@ -37,25 +37,45 @@ public class MazeSolver{
 	Location start=maze.getStart();
 	Location end=maze.getEnd();
 	while (frontier.hasNext()){
+	    // System.out.println(frontier);
 	    Location next = frontier.next();
 	    Location[] neighbors = maze.getNeighbors(next);
-	    maze.set(next.getX(), next.getY(), '.');
+	    System.out.println(maze.toStringColor());
+	    if(maze.get(next.getY(),next.getX())== 'E'){
+		Location previous = next.getPrevious();
+		while(!(previous.getX() == start.getX() && previous.getY() == start.getY())){
+		    maze.set(previous.getY(), previous.getX(), '@');
+		    previous = previous.getPrevious();
+		    System.out.println(maze.toStringColor()); 
+		}
+		return true;
+	    }
+	    else{
+		if(maze.get(next.getY(),next.getX())!= 'S'){
+		maze.set(next.getY(), next.getX(), '.');
+		}}
 	    for(Location loc: neighbors){
 		if(loc!=null){
-		    if(loc.getX()==end.getX() && loc.getY()==end.getY()){
+		    
+			frontier.add(loc);
+			//	System.out.println("added");
+		    
+		    if(maze.get(next.getY(),next.getX())== 'E'){
+			System.out.println("HEYEYYEYEYEYEYEYEYEYEY");
 			Location previous = loc.getPrevious();
 			while(!(previous.getX() == start.getX() && previous.getY() == start.getY())){
-			    maze.set(previous.getX(), previous.getY(), '@');
+			    maze.set(previous.getY(), previous.getX(), '@');
 			    previous = previous.getPrevious();
 			}
 			System.out.println(maze.toStringColor());				
 			return true;
 		    }
-		    frontier.add(loc);
-		    maze.set(loc.getX(), loc.getY(), '?');
+		    
+		    //maze.set(loc.getX(), loc.getY(), '?');
 		}
 	    }
 	}
+	//	System.out.println(frontier);
 	return false;	
     }
     //  get the next location
@@ -71,9 +91,9 @@ public class MazeSolver{
         //System.out.println(reader("data2.dat"));
 	
         try{
-	MazeSolver test= new MazeSolver("data1.dat");
+	MazeSolver test= new MazeSolver("data2.dat");
 	System.out.println(test.maze);
-    System.out.println(test.solve(1));
+    System.out.println(test.solve(3));
 	}
 	catch(Exception e){System.out.println(e);}
     }
