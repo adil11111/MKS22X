@@ -52,15 +52,15 @@ public class MazeSolver{
 	    }
 	    else{
 		if(maze.get(next.getY(),next.getX())!= 'S'){
-		maze.set(next.getY(), next.getX(), '.');
+		    maze.set(next.getY(), next.getX(), '.');
 		}}
 	    for(Location loc: neighbors){
 		if(loc!=null){
 		    
-			frontier.add(loc);
-			//	System.out.println("added");
+		    frontier.add(loc);
+		    //	System.out.println("added");
 		    
-		    if(maze.get(next.getY(),next.getX())== 'E'){
+		    /*if(maze.get(next.getY(),next.getX())== 'E'){
 			System.out.println("HEYEYYEYEYEYEYEYEYEYEY");
 			Location previous = loc.getPrevious();
 			while(!(previous.getX() == start.getX() && previous.getY() == start.getY())){
@@ -71,7 +71,7 @@ public class MazeSolver{
 			return true;
 		    }
 		    
-		    //maze.set(loc.getX(), loc.getY(), '?');
+		    //maze.set(loc.getX(), loc.getY(), '?');*/
 		}
 	    }
 	}
@@ -91,9 +91,9 @@ public class MazeSolver{
         //System.out.println(reader("data2.dat"));
 	
         try{
-	MazeSolver test= new MazeSolver("data2.dat");
-	System.out.println(test.maze);
-    System.out.println(test.solve(3));
+	    MazeSolver test= new MazeSolver("data1.dat");
+	    //System.out.println(test.maze);
+	    System.out.println(test.solve(2));
 	}
 	catch(Exception e){System.out.println(e);}
     }
