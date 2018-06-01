@@ -40,13 +40,13 @@ public class MazeSolver{
 	    // System.out.println(frontier);
 	    Location next = frontier.next();
 	    Location[] neighbors = maze.getNeighbors(next);
-	    System.out.println(maze.toStringColor());
+	    //System.out.println(maze.toStringColor());
 	    if(maze.get(next.getY(),next.getX())== 'E'){
 		Location previous = next.getPrevious();
 		while(!(previous.getX() == start.getX() && previous.getY() == start.getY())){
 		    maze.set(previous.getY(), previous.getX(), '@');
 		    previous = previous.getPrevious();
-		    System.out.println(maze.toStringColor()); 
+		    //System.out.println(maze.toStringColor()); 
 		}
 		return true;
 	    }
@@ -85,15 +85,16 @@ public class MazeSolver{
     //when there are no more values in the frontier return false
 
     public String toString(){
-	return maze.toString();
+	return maze.toStringColor();
     }
     public static void main(String[] args){
         //System.out.println(reader("data2.dat"));
 	
         try{
-	    MazeSolver test= new MazeSolver("data1.dat");
-	    //System.out.println(test.maze);
-	    System.out.println(test.solve(2));
+	    MazeSolver test= new MazeSolver("data2.dat");
+	    test.solve(2);
+	    System.out.println(test);
+
 	}
 	catch(Exception e){System.out.println(e);}
     }

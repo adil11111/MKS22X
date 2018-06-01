@@ -32,7 +32,7 @@ public class Maze{
 		    else{
 			result[i]=new Location(nextX,nextY,L, distEnd);
 		    }
-		    System.out.println(result[i]);
+		    //System.out.println(result[i]);
 		}
 	    }
 	    
